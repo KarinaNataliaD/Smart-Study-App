@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Study Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Adaptive Student Coach</p>
+        <h1>Now it plans around real life, not imaginary free time.</h1>
+        <p class="hero-text">
+          Add your weekly constraints, generate academically aware study sessions,
+          and let reflections teach the planner what intensity actually works for you.
+        </p>
+      </div>
+
+      <div class="hero-panel glass-card">
+        <div class="hero-stat">
+          <span class="label">Next Best Task</span>
+          <strong id="today-focus">Generate a plan to get your first move</strong>
+        </div>
+        <div class="hero-stat">
+          <span class="label">Momentum</span>
+          <strong id="upcoming-count">0 wins tracked</strong>
+        </div>
+        <div class="hero-stat">
+          <span class="label">Planner Mode</span>
+          <strong id="planner-mode">Balanced Strategy</strong>
+        </div>
+        <div class="hero-stat">
+          <span class="label">Readiness</span>
+          <strong id="readiness-score">0%</strong>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <section class="glass-card control-card">
+        <div class="section-heading">
+          <h2>Student Reality Layer</h2>
+          <p>Tell the planner how life feels and where your time actually goes.</p>
+        </div>
+
+        <form id="profile-form" class="profile-form">
+          <label>
+            Energy Level
+            <select name="energyLevel">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </label>
+
+          <label>
+            Stress Level
+            <select name="stressLevel">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </label>
+
+          <label>
+            Sleep Last Night
+            <input type="number" name="sleepHours" min="0" max="12" step="0.5" value="7">
+          </label>
+
+          <label>
+            Sleep Target
+            <input type="number" name="sleepTarget" min="5" max="12" step="0.5" value="8">
+          </label>
+
+          <label>
+            Class Hours / Day
+            <input type="number" name="classHours" min="0" max="12" step="0.5" value="4">
+          </label>
+
+          <label>
+            Sports Hours / Day
+            <input type="number" name="sportsHours" min="0" max="8" step="0.5" value="1">
+          </label>
+
+          <label>
+            Work Shift Hours / Day
+            <input type="number" name="workHours" min="0" max="12" step="0.5" value="2">
+          </label>
+
+          <label>
+            Commute Hours / Day
+            <input type="number" name="commuteHours" min="0" max="4" step="0.25" value="0.5">
+          </label>
+
+          <label class="span-full">
+            Weekly Calendar Pattern
+            <select name="calendarPattern">
+              <option value="balanced" selected>Balanced school week</option>
+              <option value="packed">Packed weekday schedule</option>
+              <option value="athlete">Athlete rhythm</option>
+              <option value="working-student">Working student</option>
+            </select>
+          </label>
+
+          <div class="form-actions span-full">
+            <button type="submit" class="primary-btn">Update Student State</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="glass-card task-card">
+        <div class="section-heading">
+          <h2>Add Study Task</h2>
+          <p>Factory + Decorator + Command</p>
+        </div>
+
+        <form id="task-form" class="task-form">
+          <label>
+            Title
+            <input type="text" name="title" placeholder="English comparative essay" required>
+          </label>
+
+          <label>
+            Subject
+            <input type="text" name="subject" placeholder="English" required>
+          </label>
+
+          <label>
+            Task Type
+            <select name="type">
+              <option value="exam">Exam</option>
+              <option value="homework">Homework</option>
+              <option value="project">Project</option>
+            </select>
+          </label>
+
+          <label>
+            Due Date
+            <input type="date" name="dueDate" required>
+          </label>
+
+          <label>
+            Estimated Hours
+            <input type="number" min="1" max="40" step="1" name="hours" value="3" required>
+          </label>
+
+          <label>
+            Difficulty
+            <select name="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </label>
+
+          <label>
+            Priority Layer
+            <select name="priority">
+              <option value="normal">Normal</option>
+              <option value="high">High Priority</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </label>
+
+          <label>
+            Confidence Right Now
+            <select name="confidence">
+              <option value="1">Very low</option>
+              <option value="2">Low</option>
+              <option value="3" selected>Medium</option>
+              <option value="4">Good</option>
+              <option value="5">Strong</option>
+            </select>
+          </label>
+
+          <div class="form-actions span-full">
+            <button type="submit" class="primary-btn">Add Task</button>
+            <button type="button" id="undo-btn" class="ghost-btn">Undo</button>
+            <button type="button" id="redo-btn" class="ghost-btn">Redo</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="glass-card planner-card">
+        <div class="section-heading">
+          <h2>Adaptive Planner Engine</h2>
+          <p>Strategy + Singleton + gap-aware scheduling</p>
+        </div>
+
+        <div class="strategy-row">
+          <label>
+            Scheduling Strategy
+            <select id="strategy-select">
+              <option value="balanced">Balanced Strategy</option>
+              <option value="deadline">Deadline First</option>
+              <option value="energy">Energy Saver</option>
+            </select>
+          </label>
+          <button id="generate-plan-btn" class="primary-btn">Build Plan</button>
+        </div>
+
+        <div class="coach-grid">
+          <article class="insight-card highlight">
+            <span class="card-kicker">Next Best Task</span>
+            <strong id="next-best-title">Nothing selected yet</strong>
+            <p id="next-best-reason">Add tasks and generate a plan to see the smartest next move.</p>
+          </article>
+          <article class="insight-card">
+            <span class="card-kicker">AI Coach</span>
+            <p id="ai-summary">Your schedule explanation will appear here after plan generation.</p>
+          </article>
+          <article class="insight-card crisis">
+            <span class="card-kicker">Crisis Mode</span>
+            <p id="crisis-summary">No rescue plan needed yet. When deadlines stack up, this panel will triage what to finish, compress, or postpone.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="glass-card metrics-card">
+        <div class="section-heading">
+          <h2>Momentum Dashboard</h2>
+          <p>Readiness, streaks, confidence, and realism-aware risk</p>
+        </div>
+        <div class="metric-grid">
+          <article class="metric-tile">
+            <span class="label">Completed Sessions</span>
+            <strong id="completed-count">0</strong>
+          </article>
+          <article class="metric-tile">
+            <span class="label">Consistency Streak</span>
+            <strong id="streak-count">0 days</strong>
+          </article>
+          <article class="metric-tile">
+            <span class="label">Confidence Meter</span>
+            <strong id="confidence-score">0%</strong>
+          </article>
+          <article class="metric-tile">
+            <span class="label">Burnout Risk</span>
+            <strong id="burnout-risk">Low</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="glass-card calendar-card">
+        <div class="section-heading">
+          <h2>Weekly Reality Calendar</h2>
+          <p>Class, work, sports, commute, sleep, and study gaps in one view</p>
+        </div>
+        <div id="calendar-grid" class="calendar-grid"></div>
+      </section>
+
+      <section class="glass-card tasks-card">
+        <div class="section-heading">
+          <h2>Tasks</h2>
+          <p>Assignments, exams, and projects with urgency layers</p>
+        </div>
+        <div id="task-list" class="task-list"></div>
+      </section>
+
+      <section class="glass-card schedule-card">
+        <div class="section-heading">
+          <h2>Suggested Sessions</h2>
+          <p>Academically aware session types plus reflection loop</p>
+        </div>
+        <div id="schedule-list" class="schedule-list"></div>
+      </section>
+
+      <section class="glass-card reminders-card">
+        <div class="section-heading">
+          <h2>Smart Reminder Feed</h2>
+          <p>Observer-driven nudges that react to plan changes and reflections</p>
+        </div>
+        <div id="reminder-list" class="reminder-list"></div>
+      </section>
+
+      <section class="glass-card accountability-card">
+        <div class="section-heading">
+          <h2>Mentor Snapshot</h2>
+          <p>A concise accountability summary for a parent, mentor, or teacher</p>
+        </div>
+        <div id="accountability-summary" class="summary-block"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

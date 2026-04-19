@@ -1,0 +1,485 @@
+:root {
+  --bg: #f7f1e5;
+  --bg-accent: #dff0e8;
+  --ink: #1e2727;
+  --muted: #5f6d6d;
+  --card: rgba(255, 251, 246, 0.84);
+  --line: rgba(30, 39, 39, 0.1);
+  --primary: #0f766e;
+  --primary-dark: #0d5d57;
+  --secondary: #c96d28;
+  --warning: #b7791f;
+  --danger: #d9485f;
+  --success: #2f855a;
+  --shadow: 0 24px 50px rgba(57, 71, 72, 0.13);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "IBM Plex Sans", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(15, 118, 110, 0.14), transparent 24%),
+    radial-gradient(circle at 80% 0%, rgba(201, 109, 40, 0.14), transparent 22%),
+    linear-gradient(160deg, var(--bg) 0%, var(--bg-accent) 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.26), transparent 85%);
+}
+
+.page-shell {
+  width: min(1280px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 44px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: 24px;
+  margin-bottom: 24px;
+  align-items: stretch;
+}
+
+.hero-copy h1,
+.section-heading h2,
+.metric-tile strong,
+.insight-card strong,
+.calendar-day h3 {
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.hero-copy h1 {
+  margin: 12px 0 14px;
+  max-width: 11ch;
+  line-height: 0.93;
+  font-size: clamp(2.6rem, 5vw, 4.8rem);
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.hero-text,
+.section-heading p,
+.label,
+.empty-state,
+.summary-block,
+.insight-card p,
+.calendar-chip span {
+  color: var(--muted);
+}
+
+.glass-card {
+  background: var(--card);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+
+.hero-panel,
+.control-card,
+.task-card,
+.planner-card,
+.metrics-card,
+.calendar-card,
+.tasks-card,
+.schedule-card,
+.reminders-card,
+.accountability-card {
+  padding: 24px;
+}
+
+.hero-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.hero-stat,
+.metric-tile,
+.task-item,
+.session-item,
+.reminder-item,
+.insight-card,
+.calendar-day {
+  background: rgba(255, 255, 255, 0.64);
+  border: 1px solid rgba(30, 39, 39, 0.07);
+  border-radius: 20px;
+}
+
+.hero-stat {
+  padding: 16px;
+}
+
+.hero-stat strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.08rem;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+
+.control-card,
+.task-card,
+.planner-card {
+  grid-column: span 4;
+}
+
+.metrics-card,
+.calendar-card,
+.tasks-card,
+.schedule-card,
+.reminders-card,
+.accountability-card {
+  grid-column: span 12;
+}
+
+.section-heading {
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  margin: 0 0 4px;
+  font-size: 1.55rem;
+}
+
+.section-heading p {
+  margin: 0;
+}
+
+.profile-form,
+.task-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.profile-form label,
+.task-form label,
+.strategy-row label {
+  display: grid;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.span-full {
+  grid-column: span 2;
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--ink);
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 150ms ease, opacity 150ms ease, box-shadow 150ms ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+.primary-btn,
+.mini-btn {
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  box-shadow: 0 14px 24px rgba(15, 118, 110, 0.2);
+}
+
+.primary-btn {
+  padding: 14px 18px;
+}
+
+.ghost-btn,
+.mini-ghost {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--line);
+}
+
+.ghost-btn {
+  padding: 14px 18px;
+}
+
+.mini-btn,
+.mini-ghost {
+  padding: 10px 12px;
+  font-size: 0.9rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.strategy-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: end;
+}
+
+.coach-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.insight-card {
+  padding: 18px;
+}
+
+.insight-card.highlight {
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.14), rgba(255, 255, 255, 0.85));
+}
+
+.insight-card.crisis {
+  background: linear-gradient(135deg, rgba(217, 72, 95, 0.1), rgba(255, 245, 239, 0.9));
+}
+
+.card-kicker {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--primary-dark);
+}
+
+.metric-grid,
+.calendar-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.metric-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.calendar-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.metric-tile,
+.calendar-day {
+  padding: 18px;
+}
+
+.metric-tile strong {
+  display: block;
+  margin-top: 8px;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+}
+
+.calendar-day h3 {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+}
+
+.calendar-stack {
+  display: grid;
+  gap: 8px;
+}
+
+.calendar-chip {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(30, 39, 39, 0.08);
+}
+
+.calendar-chip strong {
+  display: block;
+  font-size: 0.92rem;
+}
+
+.calendar-chip.study {
+  background: rgba(15, 118, 110, 0.12);
+}
+
+.calendar-chip.fixed {
+  background: rgba(201, 109, 40, 0.1);
+}
+
+.task-list,
+.schedule-list,
+.reminder-list {
+  display: grid;
+  gap: 14px;
+}
+
+.task-item,
+.session-item,
+.reminder-item {
+  padding: 18px;
+  animation: float-in 250ms ease;
+}
+
+.task-item strong,
+.session-item strong,
+.reminder-item strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.task-item span,
+.session-item span,
+.reminder-item span {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.task-meta,
+.session-meta,
+.session-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(15, 118, 110, 0.08);
+  color: var(--primary-dark);
+}
+
+.badge.warning {
+  background: rgba(183, 121, 31, 0.14);
+  color: var(--warning);
+}
+
+.badge.urgent {
+  background: rgba(217, 72, 95, 0.12);
+  color: var(--danger);
+}
+
+.badge.success {
+  background: rgba(47, 133, 90, 0.12);
+  color: var(--success);
+}
+
+.summary-block {
+  min-height: 120px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(30, 39, 39, 0.07);
+  line-height: 1.6;
+}
+
+.empty-state {
+  padding: 22px;
+  text-align: center;
+  border-radius: 18px;
+  border: 1px dashed rgba(30, 39, 39, 0.15);
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 1180px) {
+  .hero,
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .control-card,
+  .task-card,
+  .planner-card,
+  .metrics-card,
+  .calendar-card,
+  .tasks-card,
+  .schedule-card,
+  .reminders-card,
+  .accountability-card {
+    grid-column: auto;
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    width: min(100% - 20px, 1280px);
+    padding-top: 20px;
+  }
+
+  .profile-form,
+  .task-form,
+  .strategy-row,
+  .metric-grid,
+  .calendar-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .span-full {
+    grid-column: auto;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+}
